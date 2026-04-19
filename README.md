@@ -50,10 +50,20 @@ The app consumes data from a public REST API:
       <img src="assets/ss4.jpeg" width="250"><br>
       <b>Saved News</b>
     </td>
+    <td align="center">
+      <img src="assets/ss6.jpeg" width="250"><br>
+      <b>Error State</b>
+    </td>
     <td></td>
   </tr>
 </table>
 
+## Demo Video
+Klik gambar di bawah ini untuk menonton demo aplikasi:
+
+<a href="https://youtube.com/shorts/ZzeESQ3xse8?si=G7N3TG6-RqhjyY91">
+  <img src="https://markdown-videos-api.jorgenkh.no/youtube/ZzeESQ3xse8" width="250" alt="Tonton Demo Video">
+</a>
 
 ## How to Run
 
