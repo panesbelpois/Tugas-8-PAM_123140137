@@ -4,7 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.newsreader.MainApp
+import com.newsreader.data.local.SettingsFactory
+import com.newsreader.database.DatabaseDriverFactory
 
 class MainActivity : ComponentActivity() {
 
@@ -13,7 +14,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            MainApp()
+            App(
+                databaseDriverFactory = DatabaseDriverFactory(this),
+                settingsFactory = SettingsFactory(this)
+            )
         }
     }
 }

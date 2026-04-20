@@ -1,92 +1,57 @@
-# News Reader App - Week 6 Assignment
+# 📝 Red Velvet Notes App
 
-A modern, cross-platform News Reader application built with Kotlin Multiplatform and Compose Multiplatform. This project implements a clean design system and adheres to the Week 6 assignment requirements, including API consumption, StateFlow management, and the Repository pattern.
+## 📖 Deskripsi Aplikasi
+Aplikasi catatan (Notes App) modern berbasis **Kotlin Multiplatform** yang dirancang dengan antarmuka elegan bertema kemerahan "Red Velvet". Aplikasi ini difokuskan pada manajemen catatan sehari-hari secara *Offline-First* yang stabil, responsif, dan kaya fungsi pada multi-perangkat.
 
-## Features
-* **Read Latest News:** Fetch and display a list of current articles with titles, descriptions, and dynamic metadata (time ago, read time, views).
-* **Pull-To-Refresh:** Users can swipe down on the home screen to refresh the article list.
-* **Persistent Bottom Navigation:** Seamlessly switch between Home, Saved, and Profile screens without losing state.
-* **Read Full Article:** Interactive detail pages allowing users to read full contents, save/bookmark, and share.
-* **Save / Bookmark News:** Save your favorite articles locally so you can read them later in your collection.
-* **UI States Handling:** Comprehensive coverage of `Loading`, `Success`, and `Error` states to ensure smooth UX.
-* **Beautiful UI:** Customized gradient header, category chips, and styled data representations.
+## ✨ Fitur-fitur
+- **CRUD Notes**: *Create, Read, Update,* dan *Delete* catatan dengan sinkronisasi reaktif seketika berkat Flow.
+- **Search Notes**: Fitur penelusuran kata kunci secara *real-time* ke dalam database lokal.
+- **Settings (Theme & Sorting)**: Fleksibilitas mengubah preferensi susunan catatan serta fitur adaptasi **Mode Terang (Light) / Gelap (Dark)** secara dinamis.
+- **Offline-first storage**: Seluruh catatan tersimpan secara permanen secara lokal di dalam penyimpanan perangkat, aplikasi berjalan sempurna 100% tanpa membutuhkan jaringan internet.
 
-## Architecture
-The application is structured using Modern Android Architecture principles:
-* **Ktor Client:** Handles all the network operations asynchronously, properly equipped with Logging and Kotlinx Serialization.
-* **Repository Pattern:** `NewsRepository` abstracts the data layer, caching or transforming `ApiPost` into `Article` models, providing a single source of truth to the ViewModel.
-* **ViewModel:** `NewsViewModel` contains all the presentation logic and acts as the bridge connecting the UI and the Repository.
-* **UI State Management:** Employs a robust `UiState` sealed class (`Loading`, `Success`, `Error`) exposed through `StateFlow` so the UI remains purely reactive and side-effect free.
+## 🛠️ Teknologi yang Digunakan
+- **[Kotlin Multiplatform (KMP)](https://kotlinlang.org/docs/multiplatform.html)**: Bahasa pemrograman mandiri multi-platform.
+- **[Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)**: Framework pembuat antarmuka UI (*User Interface*) reaktif yang terpadu.
+- **[SQLDelight](https://cashapp.github.io/sqldelight/)**: Solusi *Database & CRUD* luring yang handal, diubah secara konversi aman melalui bahasa SQL murni ke fungsi Kotlin.
+- **[Multiplatform Settings](https://github.com/russhwolf/multiplatform-settings)** / DataStore: Media penyimpanan primitif ringan untuk mererekam riwayat pengaturan *Theme* dan *Sorting* yang tak hilang sesudah restart aplikasi.
 
-## API Used
-The app consumes data from a public REST API:
-* **JSONPlaceholder Posts API:** `https://jsonplaceholder.typicode.com/posts`
+## 🗄️ Database Schema
+Aplikasi memakai tabel sentral `NoteEntity` yang sangat terstruktur:
+| Kolom | Tipe Data | Keterangan |
+| --- | --- | --- |
+| `id` | `INTEGER` | Kunci utama (*Primary Key*) unik yang bersifat *Auto-Increment*. |
+| `title` | `TEXT` | Menyimpan judul catatan (Wajib Diisi / *Not Null*). |
+| `content` | `TEXT` | Memegang muatan isi catatan utuh (*Not Null*). |
+| `created_at` | `INTEGER` | Mencatat rentang waktu Unix *Epoch timestamp* kapan *notes* diciptakan pertama kali. |
+| `updated_at` | `INTEGER` | Mencatat riwayat waktu (*Epoch timestamp*) detik catatan disentuh/direvisi terakhir. |
 
-## Screenshots
+## 🚀 Cara Menjalankan Project
+Untuk menguji coba jalannya kode atau mem-*build* ke atas emulator/smartphone Android Anda:
+1. *Clone* repositori ini / Ekstrak source folder aplikasinya ke penyimpanan fisik Anda.
+2. Buka project menggunakan **Android Studio** versi terbaru (disarankan Ladybug ke atas).
+3. Tunggu dan pastikan IDE selesai melakukan integrasi *sync project with Gradle files*.
+4. Pada *run configurations* di atas *toolbar*, pilih menu instalasi `composeApp` ke target (seperti Android Emulator atau *physical device* USB Anda).
+5. Klik **Run** alias Tombol Play hijau (▶️) atau menggunakan shortcut `Shift + F10`.
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="assets/ss1.jpeg" width="250"><br>
-      <b>Loading to Home</b>
-    </td>
-    <td align="center">
-      <img src="assets/ss5.jpeg" width="250"><br>
-      <b>Home News List</b>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="assets/ss3.jpeg" width="250"><br>
-      <b>News Detail</b>
-    </td>
-    <td align="center">
-      <img src="assets/ss2.jpeg" width="250"><br>
-      <b>Profile Page</b>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="assets/ss4.jpeg" width="250"><br>
-      <b>Saved News</b>
-    </td>
-    <td align="center">
-      <img src="assets/ss6.jpeg" width="250"><br>
-      <b>Error State</b>
-    </td>
-    <td></td>
-  </tr>
-</table>
+--- 
+## 📸 Dokumentasi Screenshot (Screen-caps)
 
-## Demo Video
-Klik gambar di bawah ini untuk menonton demo aplikasi:
+### ⚪ Inisialisasi & Pengisian Catatan
+| State Awal (Kosong) | Form Tambah (Kosong) | Halaman Tambah (Terisi) |
+|:---:|:---:|:---:|
+| ![State awal, kosong](assets/ss1.jpg) | ![Halaman Form](assets/ss2.jpg) | ![Pengetikan Interaktif](assets/ss3.jpg) |
 
-<a href="https://youtube.com/shorts/ZzeESQ3xse8?si=G7N3TG6-RqhjyY91">
-  <img src="https://markdown-videos-api.jorgenkh.no/youtube/ZzeESQ3xse8" width="250" alt="Tonton Demo Video">
-</a>
+### 🔍 Penelusuran & Panel Konfigurasi (Terang)
+| Daftar Catatan Berisi | Hasil Pencarian Search | Halaman Settings |
+|:---:|:---:|:---:|
+| ![Daftar Tampil](assets/ss4.jpg) | ![Hasil Query](assets/ss5.jpg) | ![Pengaturan Aplikasi](assets/ss6.jpg) |
 
-## How to Run
+### 🌑 Demonstrasi Mode Gelap (Dark Mode) Dinamis Terpadu
+Visual estetik UI menanamkan *Material Theme Color Scheme* dinamis sehingga layar apapun patuh untuk mengganti skinnya tatkala preferensi dirubah dari sistem/Settings.
 
-### Requirements
-* Android Studio (latest stable version)
-* JDK 11 or newer
+| *Beranda (Dark Mode)* | *Tulis Form (Dark Mode)* | *Setting Opsi (Dark Mode)* |
+|:---:|:---:|:---:|
+| ![Dark Mode Home](assets/ss7.jpg) | ![Dark Mode Tambah](assets/ss8.jpg) | ![Dark Mode Pengaturan](assets/ss9.jpg) |
+## 🎥 Video Demonstrasi
 
-### Steps to Build
-1. Clone or download the project folder (`anisahpam6`).
-2. Open Android Studio and select **Open**. Navigate to the project root directory.
-3. Allow Gradle to sync completely.
-4. Select the `composeApp` run configuration and target an active Android Emulator or physical device.
-5. Click **Run** (Shift + F10) to build and install the application.
-
-*To run on iOS (Mac only):* Open Xcode via `iosApp.xcworkspace`, and run the app to a simulator.
-
-## Tech Stack
-* Kotlin Multiplatform
-* Compose Multiplatform
-* Ktor Client
-* Kotlinx Serialization
-* Kotlin Coroutines & Flow
-* Gradle Version Catalogs
-
-## Author
-* **Anisah Octa Rohila** - (123140137)
+[![Video Demonstrasi](https://markdown-videos-api.jorgenkh.no/youtube/YNjlka8-XBs)](https://youtube.com/shorts/YNjlka8-XBs?si=IrKRZlujK4Uqe6b0)

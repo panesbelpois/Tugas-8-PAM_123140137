@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -47,6 +48,12 @@ kotlin {
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
 
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+
+                // ✅ DB & PREFS
+                implementation(libs.sqldelight.coroutines.extensions)
+                implementation(libs.multiplatform.settings)
+                implementation(libs.multiplatform.settings.coroutines)
+                implementation(libs.kotlinx.datetime)
             }
         }
 
@@ -54,9 +61,13 @@ kotlin {
             dependencies {
 
                 implementation(libs.androidx.activity.compose)
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
 
                 // ✅ KTOR ANDROID ENGINE
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
+
+                // ✅ SQLDELIGHT ANDROID DRIVER
+                implementation(libs.sqldelight.android.driver)
             }
         }
 
@@ -65,6 +76,9 @@ kotlin {
 
                 implementation(compose.desktop.currentOs)
                 implementation(libs.kotlinx.coroutinesSwing)
+                
+                // ✅ SQLDELIGHT EXPERIMENTAL JVM DRIVER
+                implementation(libs.sqldelight.sqlite.driver)
             }
         }
 
@@ -72,6 +86,14 @@ kotlin {
             dependencies {
                 implementation(libs.kotlin.test)
             }
+        }
+    }
+}
+
+sqldelight {
+    databases {
+        create("AppDatabase") {
+            packageName.set("com.newsreader.database")
         }
     }
 }

@@ -28,3 +28,11 @@ val TagHealth        = Color(0xFF2E7D32)   // forest green
 // Gradient helpers
 val GradientTop      = Color(0xFF8B1A2E)
 val GradientBottom   = Color(0xFF5C0A0A)
+
+// ── Dark Theme Additions ──────────────────────────────────────────────────────
+val BackgroundDark       = Color(0xFF121212)
+val SurfaceDark          = Color(0xFF1C1616) // Very dark maroon tint
+val SurfaceVariantDark   = Color(0xFF2D2324) 
+val PrimaryContainerDark = Color(0xFF4A1212)
+val OnBackgroundDark     = Color(0xFFEDEDED)
+val OnSurfaceDark        = Color(0xFFEAEAEA)
