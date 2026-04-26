@@ -154,10 +154,23 @@ composeApp/src/
 
 ## Screenshots
 
-| Settings Screen — Device Info & Battery | Home Screen — Offline Mode | Home Screen — Online Mode |
-| :---: | :---: | :---: |
-| <img src="assets/ss1.jpeg" width="250"> | <img src="assets/ss2.jpeg" width="250"> | <img src="assets/ss3.jpeg" width="250"> |
-| *Menampilkan informasi perangkat (nama device, versi OS, versi app) dan status baterai yang di-inject melalui Koin.* | *Banner "Tidak ada koneksi internet" muncul otomatis di bagian atas saat airplane mode aktif.* | *Banner hilang secara otomatis ketika koneksi internet kembali tersedia.* |
+<table width="100%">
+  <tr>
+    <th width="33%" align="center">Settings Screen — Device Info & Battery</th>
+    <th width="33%" align="center">Home Screen — Offline Mode</th>
+    <th width="33%" align="center">Home Screen — Online Mode</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/ss1.jpeg" width="250"></td>
+    <td align="center"><img src="assets/ss2.jpeg" width="250"></td>
+    <td align="center"><img src="assets/ss3.jpeg" width="250"></td>
+  </tr>
+  <tr>
+    <td align="center"><em>Menampilkan informasi perangkat (nama device, versi OS, versi app) dan status baterai yang di-inject melalui Koin.</em></td>
+    <td align="center"><em>Banner "Tidak ada koneksi internet" muncul otomatis di bagian atas saat airplane mode aktif.</em></td>
+    <td align="center"><em>Banner hilang secara otomatis ketika koneksi internet kembali tersedia.</em></td>
+  </tr>
+</table>
 
 ---
 
