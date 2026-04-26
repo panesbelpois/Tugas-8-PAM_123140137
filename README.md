@@ -18,7 +18,7 @@ A Kotlin Multiplatform (KMP) Notes App built with Compose Multiplatform targetin
 
 ## 🎥 Video Demonstrasi
 
-[![Video Demo](https://img.youtube.com/vi/B_elMXnySA4/hqdefault.jpg)](https://youtube.com/shorts/B_elMXnySA4?si=L2AxMDFYriGEqwz4)
+[![Video Demo](https://markdown-videos-api.jorgenkh.no/youtube/B_elMXnySA4)](https://youtube.com/shorts/B_elMXnySA4?si=L2AxMDFYriGEqwz4)
 
 ---
 
@@ -84,9 +84,9 @@ graph TD
     Expect -.->|actualized by| ActualIOS
     Expect -.->|actualized by| ActualJVM
 
-    Koin -.->|wires dependencies| Presentation Layer
-    Koin -.->|wires dependencies| Data Layer
-    Koin -.->|wires dependencies| Platform Layer
+    Koin -.->|wires dependencies| UI
+    Koin -.->|wires dependencies| Repo
+    Koin -.->|wires dependencies| Expect
 ```
 
 ---
