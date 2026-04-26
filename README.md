@@ -1,57 +1,247 @@
-# 📝 Red Velvet Notes App
+# Anisahpam — Notes App (Week 8: Platform-Specific Features)
 
-## 📖 Deskripsi Aplikasi
-Aplikasi catatan (Notes App) modern berbasis **Kotlin Multiplatform** yang dirancang dengan antarmuka elegan bertema kemerahan "Red Velvet". Aplikasi ini difokuskan pada manajemen catatan sehari-hari secara *Offline-First* yang stabil, responsif, dan kaya fungsi pada multi-perangkat.
+A Kotlin Multiplatform (KMP) Notes App built with Compose Multiplatform targeting Android, iOS, and JVM Desktop. This week's upgrade introduces **Koin Dependency Injection**, **expect/actual platform APIs** (DeviceInfo, NetworkMonitor, BatteryInfo), and handling of runtime connectivity states to provide a robust offline-first architecture.
 
-## ✨ Fitur-fitur
-- **CRUD Notes**: *Create, Read, Update,* dan *Delete* catatan dengan sinkronisasi reaktif seketika berkat Flow.
-- **Search Notes**: Fitur penelusuran kata kunci secara *real-time* ke dalam database lokal.
-- **Settings (Theme & Sorting)**: Fleksibilitas mengubah preferensi susunan catatan serta fitur adaptasi **Mode Terang (Light) / Gelap (Dark)** secara dinamis.
-- **Offline-first storage**: Seluruh catatan tersimpan secara permanen secara lokal di dalam penyimpanan perangkat, aplikasi berjalan sempurna 100% tanpa membutuhkan jaringan internet.
+---
 
-## 🛠️ Teknologi yang Digunakan
-- **[Kotlin Multiplatform (KMP)](https://kotlinlang.org/docs/multiplatform.html)**: Bahasa pemrograman mandiri multi-platform.
-- **[Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)**: Framework pembuat antarmuka UI (*User Interface*) reaktif yang terpadu.
-- **[SQLDelight](https://cashapp.github.io/sqldelight/)**: Solusi *Database & CRUD* luring yang handal, diubah secara konversi aman melalui bahasa SQL murni ke fungsi Kotlin.
-- **[Multiplatform Settings](https://github.com/russhwolf/multiplatform-settings)** / DataStore: Media penyimpanan primitif ringan untuk mererekam riwayat pengaturan *Theme* dan *Sorting* yang tak hilang sesudah restart aplikasi.
+## 👨‍🎓 Student Info
 
-## 🗄️ Database Schema
-Aplikasi memakai tabel sentral `NoteEntity` yang sangat terstruktur:
-| Kolom | Tipe Data | Keterangan |
-| --- | --- | --- |
-| `id` | `INTEGER` | Kunci utama (*Primary Key*) unik yang bersifat *Auto-Increment*. |
-| `title` | `TEXT` | Menyimpan judul catatan (Wajib Diisi / *Not Null*). |
-| `content` | `TEXT` | Memegang muatan isi catatan utuh (*Not Null*). |
-| `created_at` | `INTEGER` | Mencatat rentang waktu Unix *Epoch timestamp* kapan *notes* diciptakan pertama kali. |
-| `updated_at` | `INTEGER` | Mencatat riwayat waktu (*Epoch timestamp*) detik catatan disentuh/direvisi terakhir. |
+| Keterangan | Detail |
+| :--- | :--- |
+| **Nama** | [ISI NAMA] |
+| **NIM** | [ISI NIM] |
+| **Mata Kuliah** | Pengembangan Aplikasi Mobile |
+| **Pertemuan** | 8 — Platform-Specific Features |
+| **Institusi** | Institut Teknologi Sumatera |
 
-## 🚀 Cara Menjalankan Project
-Untuk menguji coba jalannya kode atau mem-*build* ke atas emulator/smartphone Android Anda:
-1. *Clone* repositori ini / Ekstrak source folder aplikasinya ke penyimpanan fisik Anda.
-2. Buka project menggunakan **Android Studio** versi terbaru (disarankan Ladybug ke atas).
-3. Tunggu dan pastikan IDE selesai melakukan integrasi *sync project with Gradle files*.
-4. Pada *run configurations* di atas *toolbar*, pilih menu instalasi `composeApp` ke target (seperti Android Emulator atau *physical device* USB Anda).
-5. Klik **Run** alias Tombol Play hijau (▶️) atau menggunakan shortcut `Shift + F10`.
+---
 
---- 
-## 📸 Dokumentasi Screenshot (Screen-caps)
-
-### ⚪ Inisialisasi & Pengisian Catatan
-| State Awal (Kosong) | Form Tambah (Kosong) | Halaman Tambah (Terisi) |
-|:---:|:---:|:---:|
-| ![State awal, kosong](assets/ss1.jpg) | ![Halaman Form](assets/ss2.jpg) | ![Pengetikan Interaktif](assets/ss3.jpg) |
-
-### 🔍 Penelusuran & Panel Konfigurasi (Terang)
-| Daftar Catatan Berisi | Hasil Pencarian Search | Halaman Settings |
-|:---:|:---:|:---:|
-| ![Daftar Tampil](assets/ss4.jpg) | ![Hasil Query](assets/ss5.jpg) | ![Pengaturan Aplikasi](assets/ss6.jpg) |
-
-### 🌑 Demonstrasi Mode Gelap (Dark Mode) Dinamis Terpadu
-Visual estetik UI menanamkan *Material Theme Color Scheme* dinamis sehingga layar apapun patuh untuk mengganti skinnya tatkala preferensi dirubah dari sistem/Settings.
-
-| *Beranda (Dark Mode)* | *Tulis Form (Dark Mode)* | *Setting Opsi (Dark Mode)* |
-|:---:|:---:|:---:|
-| ![Dark Mode Home](assets/ss7.jpg) | ![Dark Mode Tambah](assets/ss8.jpg) | ![Dark Mode Pengaturan](assets/ss9.jpg) |
 ## 🎥 Video Demonstrasi
 
-[![Video Demonstrasi](https://markdown-videos-api.jorgenkh.no/youtube/YNjlka8-XBs)](https://youtube.com/shorts/YNjlka8-XBs?si=IrKRZlujK4Uqe6b0)
+[![Video Demo](https://img.youtube.com/vi/B_elMXnySA4/hqdefault.jpg)](https://youtube.com/shorts/B_elMXnySA4?si=L2AxMDFYriGEqwz4)
+
+---
+
+## ✨ Features
+
+- **CRUD Notes**: Create, Read, Update, Delete notes seamlessly.
+- **SQLDelight Local Database**: Robust offline-first persistence.
+- **Light/Dark Theme Toggle**: Customizable UI themes.
+- **Sort Notes**: Order notes dynamically by date or title.
+- **Koin Dependency Injection (Week 8)**: Clean architecture wiring using Koin 3.5.3.
+- **DeviceInfo via expect/actual**: Displays device name, OS version, and app version based on the platform.
+- **NetworkMonitor via expect/actual**: Observes internet connectivity and displays an automatic offline banner.
+- **BatteryInfo via expect/actual (Bonus)**: Monitors and displays real-time battery level and charging status.
+
+---
+
+## 🏛️ Architecture Diagram
+
+```mermaid
+graph TD
+    %% Presentation Layer
+    subgraph Presentation Layer
+        UI[HomeScreen, SettingsScreen, EditScreen, DetailScreen]
+        VM[NotesViewModel]
+    end
+
+    %% Domain Layer
+    subgraph Domain Layer
+        Model[Note Data Model]
+    end
+
+    %% Data Layer
+    subgraph Data Layer
+        Repo[NoteRepository]
+        LocalDS[NoteLocalDataSource]
+        DB[(AppDatabase via SQLDelight)]
+    end
+
+    %% Platform Layer
+    subgraph Platform Layer
+        Expect[DeviceInfo, NetworkMonitor, BatteryInfo]
+        ActualAndroid[Android Implementation]
+        ActualIOS[iOS Implementation]
+        ActualJVM[JVM Implementation]
+    end
+
+    %% DI Layer
+    subgraph Dependency Injection
+        Koin[Koin AppModule]
+    end
+
+    %% Connections
+    UI -->|observes| VM
+    VM -->|uses| Repo
+    Repo -->|fetches/saves| LocalDS
+    LocalDS -->|queries| DB
+    
+    VM --> Model
+    Repo --> Model
+
+    UI -->|injects| Expect
+    Expect -.->|actualized by| ActualAndroid
+    Expect -.->|actualized by| ActualIOS
+    Expect -.->|actualized by| ActualJVM
+
+    Koin -.->|wires dependencies| Presentation Layer
+    Koin -.->|wires dependencies| Data Layer
+    Koin -.->|wires dependencies| Platform Layer
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Description |
+| :--- | :--- |
+| **Kotlin Multiplatform** | Core logic sharing across platforms |
+| **Compose Multiplatform** | Shared UI framework |
+| **SQLDelight** | Type-safe multiplatform database |
+| **Koin 3.5.3** | Dependency Injection framework |
+| **Multiplatform Settings** | Key-value storage for preferences |
+| **Coroutines & Flow** | Asynchronous programming and reactive state |
+| **Material 3** | Modern UI components and styling |
+| **Accompanist Permissions** | Managing runtime permissions |
+
+---
+
+## 🚀 Week 8 Changes
+
+This update significantly refactors the project architecture to implement Platform-Specific functionality:
+
+1. **Koin DI Setup**: Introduced `AppModule.kt`, `MyApplication.kt`, and `viewModelOf` to systematically inject ViewModels, Repositories, and Services.
+2. **Platform Expect/Actual API**: Designed a clean architecture pattern for platform-specific hardware APIs (`DeviceInfo`, `NetworkMonitor`, `BatteryInfo`).
+3. **Android NetworkMonitor Implementation**: Integrated `ConnectivityManager` combined with `callbackFlow` to reactively observe network state changes.
+4. **Android BatteryInfo Implementation (Bonus)**: Interfaced with Android's `BatteryManager` to track current battery capacity and charging status dynamically.
+5. **UI Integration**: 
+   - Added `DeviceInfoCard` and `BatteryCard` in `SettingsScreen` to display hardware information.
+   - Designed a reactive offline banner in `HomeScreen` to notify users when network connectivity drops.
+
+---
+
+## 📂 Project Structure (Week 8 Highlights)
+
+```text
+composeApp/src/
+├── commonMain/kotlin/com/newsreader/
+│   ├── di/AppModule.kt
+│   ├── platform/
+│   │   ├── DeviceInfo.kt
+│   │   ├── NetworkMonitor.kt
+│   │   └── BatteryInfo.kt
+│   ├── presentation/
+│   │   ├── notes/HomeScreen.kt
+│   │   └── settings/SettingsScreen.kt
+│   └── ...existing structure...
+├── androidMain/kotlin/com/newsreader/
+│   ├── MyApplication.kt
+│   └── platform/
+│       ├── DeviceInfo.android.kt
+│       ├── NetworkMonitor.android.kt
+│       └── BatteryInfo.android.kt
+├── iosMain/kotlin/com/newsreader/platform/
+│   ├── DeviceInfo.ios.kt
+│   ├── NetworkMonitor.ios.kt
+│   └── BatteryInfo.ios.kt
+└── jvmMain/kotlin/com/newsreader/platform/
+    ├── DeviceInfo.jvm.kt
+    ├── NetworkMonitor.jvm.kt
+    └── BatteryInfo.jvm.kt
+```
+
+---
+
+## Screenshots
+
+| Settings Screen — Device Info & Battery | Home Screen — Offline Mode | Home Screen — Online Mode |
+| :---: | :---: | :---: |
+| <img src="assets/ss1.jpeg" width="250"> | <img src="assets/ss2.jpeg" width="250"> | <img src="assets/ss3.jpeg" width="250"> |
+| *Menampilkan informasi perangkat (nama device, versi OS, versi app) dan status baterai yang di-inject melalui Koin.* | *Banner "Tidak ada koneksi internet" muncul otomatis di bagian atas saat airplane mode aktif.* | *Banner hilang secara otomatis ketika koneksi internet kembali tersedia.* |
+
+---
+
+## 💻 How to Run
+
+### Android (Android Studio / IntelliJ)
+1. Clone this repository.
+2. Open the project in Android Studio or IntelliJ IDEA.
+3. Sync the Gradle files.
+4. Select the `composeApp` run configuration and target an Android Emulator or physical device.
+5. Click **Run** (Shift + F10).
+
+### iOS
+*Note: Requires a Mac environment with Xcode installed.*
+1. Open the project in Xcode using the `iosApp/iosApp.xcworkspace`.
+2. Select your target simulator or device.
+3. Click **Run** (Cmd + R).
+
+### JVM Desktop
+To run the JVM desktop application, execute the following command in your terminal:
+```bash
+./gradlew :composeApp:run
+```
+
+---
+
+## 📦 Dependencies Setup
+
+**gradle/libs.versions.toml**
+```toml
+[versions]
+koin = "3.5.3"
+koin-compose = "1.1.2"
+
+[libraries]
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin-compose" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+```
+
+**composeApp/build.gradle.kts**
+```kotlin
+// commonMain
+implementation(libs.koin.core)
+implementation(libs.koin.compose)
+
+// androidMain
+implementation(libs.koin.android)
+implementation(libs.koin.androidx.compose)
+```
+
+---
+
+## 🔌 Koin Module Snapshot
+
+**AppModule.kt**
+```kotlin
+package com.newsreader.di
+
+import org.koin.dsl.module
+import org.koin.core.module.dsl.viewModelOf
+
+expect fun platformModule(): Module
+
+val appModules = module {
+    // ── Data Layer
+    single { AppDatabase(get<DatabaseDriverFactory>().createDriver()) }
+    single { NoteLocalDataSource(get()) }
+    single { NoteRepository(get()) }
+    single { SettingsManager(get<SettingsFactory>().createSettings()) }
+
+    // ── Platform Services
+    single { DeviceInfo() }
+    single { NetworkMonitor() }
+    single { BatteryInfo() }
+
+    // ── ViewModels
+    factory { NotesViewModel(get(), get()) }
+}
+```
+
+---
+
+## 📜 License
+
+MIT License © 2025

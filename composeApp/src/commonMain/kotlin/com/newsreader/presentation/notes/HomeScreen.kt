@@ -1,6 +1,9 @@
-﻿package com.newsreader.presentation.notes
+package com.newsreader.presentation.notes
 import androidx.compose.material3.MaterialTheme
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -9,6 +12,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.WifiOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -22,10 +27,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.newsreader.data.model.UiState
 import com.newsreader.domain.model.Note
+import com.newsreader.platform.NetworkMonitor
 import com.newsreader.ui.theme.*
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import org.koin.compose.koinInject
 
 @Composable
 fun HomeScreen(
@@ -34,6 +42,10 @@ fun HomeScreen(
     onSearch: (String) -> Unit
 ) {
     var searchQuery by remember { mutableStateOf("") }
+
+    // ── [ADDED] Inject NetworkMonitor and collect connectivity state ───────
+    val networkMonitor: NetworkMonitor = koinInject()
+    val isConnected by networkMonitor.observeConnectivity().collectAsState(initial = true)
 
     Column(
         modifier = Modifier
@@ -128,6 +140,36 @@ fun HomeScreen(
                         modifier = Modifier.fillMaxWidth()
                     )
                 }
+            }
+        }
+
+        // ── [ADDED] Offline Banner ────────────────────────────────────────
+        AnimatedVisibility(
+            visible = !isConnected,
+            enter = expandVertically(),
+            exit = shrinkVertically()
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colorScheme.errorContainer)
+                    .padding(horizontal = 16.dp, vertical = 10.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Default.WifiOff,
+                    contentDescription = "Offline",
+                    tint = MaterialTheme.colorScheme.onErrorContainer,
+                    modifier = Modifier.size(18.dp)
+                )
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    text = "Tidak ada koneksi internet",
+                    color = MaterialTheme.colorScheme.onErrorContainer,
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
             }
         }
 

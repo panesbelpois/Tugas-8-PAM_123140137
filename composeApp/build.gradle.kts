@@ -54,6 +54,10 @@ kotlin {
                 implementation(libs.multiplatform.settings)
                 implementation(libs.multiplatform.settings.coroutines)
                 implementation(libs.kotlinx.datetime)
+
+                // ✅ KOIN
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose)
             }
         }
 
@@ -68,6 +72,10 @@ kotlin {
 
                 // ✅ SQLDELIGHT ANDROID DRIVER
                 implementation(libs.sqldelight.android.driver)
+
+                // ✅ KOIN ANDROID
+                implementation(libs.koin.android)
+                implementation(libs.koin.androidx.compose)
             }
         }
 
@@ -129,6 +137,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 

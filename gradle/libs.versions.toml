@@ -26,6 +26,9 @@ sqldelight = "2.0.1"
 multiplatformSettings = "1.1.1"
 kotlinx-datetime = "0.6.0"
 
+koin = "3.5.3"
+koin-compose = "1.1.2"
+
 
 # ================= LIBRARIES =================
 
@@ -78,6 +81,14 @@ sqldelight-coroutines-extensions = { module = "app.cash.sqldelight:coroutines-ex
 multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
 multiplatform-settings-coroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "multiplatformSettings" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+
+
+# ================= KOIN =================
+
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin-compose" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 
 
 # ================= PLUGINS =================
