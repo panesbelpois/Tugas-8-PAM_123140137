@@ -1,4 +1,4 @@
-# Anisahpam — Notes App (Week 8: Platform-Specific Features)
+# Notes App (Week 8: Platform-Specific Features)
 
 A Kotlin Multiplatform (KMP) Notes App built with Compose Multiplatform targeting Android, iOS, and JVM Desktop. This week's upgrade introduces **Koin Dependency Injection**, **expect/actual platform APIs** (DeviceInfo, NetworkMonitor, BatteryInfo), and handling of runtime connectivity states to provide a robust offline-first architecture.
 
@@ -8,8 +8,8 @@ A Kotlin Multiplatform (KMP) Notes App built with Compose Multiplatform targetin
 
 | Keterangan | Detail |
 | :--- | :--- |
-| **Nama** | [ISI NAMA] |
-| **NIM** | [ISI NIM] |
+| **Nama** | Anisah Octa Rohila |
+| **NIM** | 123140137 |
 | **Mata Kuliah** | Pengembangan Aplikasi Mobile |
 | **Pertemuan** | 8 — Platform-Specific Features |
 | **Institusi** | Institut Teknologi Sumatera |
