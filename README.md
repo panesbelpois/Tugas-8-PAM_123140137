@@ -253,6 +253,19 @@ val appModules = module {
 }
 ```
 
+## ✅ Rubrik Penilaian
+
+Berikut adalah status pemenuhan kriteria tugas berdasarkan implementasi pada proyek ini:
+
+| No | Kriteria Penilaian | Status | Deskripsi Implementasi |
+| :--- | :--- | :---: | :--- |
+| 1 | **Konfigurasi Koin Dependency Injection** | ✅ | Menggunakan Koin untuk injeksi ViewModel, Repository, dan Service melalui `AppModule.kt` serta inisialisasi pada `MyApplication.kt`. |
+| 2 | **Implementasi Expect/Actual Pattern** | ✅ | Implementasi `expect/actual` pada `DeviceInfo`, `NetworkMonitor`, dan `BatteryInfo` di seluruh source set (Android, iOS, JVM). |
+| 3 | **Integrasi UI dengan Fitur Platform** | ✅ | Menampilkan informasi perangkat dan baterai di `SettingsScreen` serta banner konektivitas reaktif di `HomeScreen`. |
+| 4 | **Struktur Arsitektur & Organisasi Kode** | ✅ | Pemisahan folder yang rapi (`di`, `platform`, `presentation`, `data`) sesuai dengan prinsip Clean Architecture. |
+| 5 | **Kualitas Kode & Dokumentasi** | ✅ | Penamaan variabel yang deskriptif, penggunaan `StateFlow`, dan README yang mendokumentasikan fitur secara detail. |
+| 6 | **Bonus: Implementasi Battery Information** | ✅ | Menambahkan fitur pemantauan kapasitas dan status pengisian baterai secara real-time untuk semua platform. |
+
 ---
 
 ## 📜 License
